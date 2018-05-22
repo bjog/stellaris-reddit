@@ -1,11 +1,13 @@
 import praw
 
-def main():
+def search_dev_diary():
 	reddit = praw.Reddit("GCRedditBot")
 	subreddit = reddit.subreddit("stellaris")
-	
-	for submission in subreddit.hot(limit=5):
-		print("Title: ", submission.title)
+	submissions = subreddit.search("stellaris dev diary", sort="new", time_filter= "week")
+	for submission in submissions:
+		print(submission.title)
 
+def main():
+	search_dev_diary()
 if __name__ == "__main__":
 	main()	
